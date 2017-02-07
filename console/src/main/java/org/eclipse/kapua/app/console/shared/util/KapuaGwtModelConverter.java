@@ -66,7 +66,7 @@ public class KapuaGwtModelConverter {
 
     /**
      * Converts a {@link Role} into a {@link GwtRole} object for GWT usage.
-     *
+     * 
      * @param role The {@link Role} to convert.
      * @return The converted {@link GwtRole}.
      * @since 1.0.0
@@ -189,7 +189,7 @@ public class KapuaGwtModelConverter {
 
     /**
      * Converts a {@link RolePermission} into a {@link GwtRolePermission} object for GWT usage.
-     *
+     * 
      * @param rolePermission The {@link RolePermission} to convert
      * @return The converted {@link GwtRolePermission}
      * @since 1.0.0
@@ -217,7 +217,7 @@ public class KapuaGwtModelConverter {
 
     /**
      * Converts a {@link Permission} into a {@link GwtPermission} object for GWT usage.
-     *
+     * 
      * @param permission The {@link Permission} to convert.
      * @return The converted {@link GwtPermission}.
      * @since 1.0.0
@@ -231,7 +231,7 @@ public class KapuaGwtModelConverter {
 
     /**
      * Converts a {@link Action} into a {@link GwtAction}
-     *
+     * 
      * @param action The {@link Action} to convert
      * @return The converted {@link GwtAction}
      * @since 1.0.0
@@ -284,7 +284,7 @@ public class KapuaGwtModelConverter {
 
     /**
      * Converts a {@link String} domain into a {@link GwtDomain}
-     *
+     * 
      * @param domain The {@link String} domain to convert
      * @return The converted {@link GwtDomain}
      * @since 1.0.0
@@ -354,7 +354,7 @@ public class KapuaGwtModelConverter {
      * <p>
      * Example: 1 => AQ
      * </p>
-     *
+     * 
      * @param kapuaId The {@link KapuaId} to convert
      * @return The short id representation of the {@link KapuaId}
      * @since 1.0.0
@@ -371,7 +371,7 @@ public class KapuaGwtModelConverter {
 
     /**
      * Converts a {@link Account} into a {@link GwtAccount} for GWT usage.
-     *
+     * 
      * @param account The {@link Account} to convert.
      * @return The converted {@link GwtAccount}
      * @since 1.0.0
@@ -403,7 +403,7 @@ public class KapuaGwtModelConverter {
 
     /**
      * Converts a {@link Organization} into a {@link GwtOrganization} for GWT usage.
-     *
+     * 
      * @param organization The {@link Organization} to convert.
      * @return The converted {@link GwtOrganization}.
      * @since 1.0.0
@@ -429,7 +429,7 @@ public class KapuaGwtModelConverter {
 
     /**
      * Converts a {@link User} into a {@link GwtUser} for GWT usage.
-     *
+     * 
      * @param user The {@link User} to convert.
      * @return The converted {@link GwtUser}
      * @since 1.0.0
@@ -458,9 +458,10 @@ public class KapuaGwtModelConverter {
 
     public static GwtDevice convert(Device device)
             throws KapuaException {
+
         GwtDevice gwtDevice = new GwtDevice();
-        gwtDevice.setId(device.getId().toCompactId());
-        gwtDevice.setScopeId(device.getScopeId().toCompactId());
+        gwtDevice.setId(convert(device.getId()));
+        gwtDevice.setScopeId(convert(device.getScopeId()));
         gwtDevice.setGwtDeviceStatus(device.getStatus().toString());
         gwtDevice.setClientId(device.getClientId());
         gwtDevice.setDisplayName(device.getDisplayName());
@@ -474,40 +475,29 @@ public class KapuaGwtModelConverter {
         gwtDevice.setAcceptEncoding(device.getAcceptEncoding());
         gwtDevice.setApplicationIdentifiers(device.getApplicationIdentifiers());
         gwtDevice.setLastEventOn(device.getLastEvent().getReceivedOn());
-
+        gwtDevice.setIotFrameworkVersion(device.getApplicationFrameworkVersion());
         gwtDevice.setIccid(device.getIccid());
         gwtDevice.setImei(device.getImei());
         gwtDevice.setImsi(device.getImsi());
-
-        String lastEventType = device.getLastEvent() != null ? device.getLastEvent().getType() : "";
-        gwtDevice.setLastEventType(lastEventType);
-
-        // custom Attributes
         gwtDevice.setCustomAttribute1(device.getCustomAttribute1());
         gwtDevice.setCustomAttribute2(device.getCustomAttribute2());
         gwtDevice.setCustomAttribute3(device.getCustomAttribute3());
         gwtDevice.setCustomAttribute4(device.getCustomAttribute4());
         gwtDevice.setCustomAttribute5(device.getCustomAttribute5());
-
         gwtDevice.setOptlock(device.getOptlock());
 
+        // Last device event
+        if (device.getLastEvent() != null) {
+            DeviceEvent lastEvent = device.getLastEvent();
+
+            gwtDevice.setLastEventType(lastEvent.getType());
+            gwtDevice.setLastEventOn(lastEvent.getReceivedOn());
+
+        }
+
         // Device connection
-        KapuaLocator locator = KapuaLocator.getInstance();
-        DeviceConnectionService deviceConnectionService = locator.getService(DeviceConnectionService.class);
-        DeviceConnectionFactory deviceConnectionFactory = locator.getFactory(DeviceConnectionFactory.class);
-
-        DeviceConnectionQuery query = deviceConnectionFactory.newQuery(device.getScopeId());
-        KapuaAndPredicate andPredicate = new AndPredicate();
-        andPredicate = andPredicate.and(new AttributePredicate<String>(DeviceConnectionPredicates.CLIENT_ID, device.getClientId()));
-        // andPredicate = andPredicate.and(new AttributePredicate<DeviceConnectionStatus[]>(DeviceConnectionPredicates.CONNECTION_STATUS,
-        // new DeviceConnectionStatus[] { DeviceConnectionStatus.CONNECTED, DeviceConnectionStatus.MISSING }));
-
-        query.setPredicate(andPredicate);
-
-        KapuaListResult<DeviceConnection> deviceConnections = deviceConnectionService.query(query);
-
-        if (!deviceConnections.isEmpty()) {
-            DeviceConnection connection = deviceConnections.getItem(0);
+        if (device.getConnection() != null) {
+            DeviceConnection connection = device.getConnection();
 
             gwtDevice.setGwtDeviceConnectionStatus(connection.getStatus().toString());
             gwtDevice.setConnectionIp(connection.getClientIp());
@@ -532,7 +522,7 @@ public class KapuaGwtModelConverter {
 
     /**
      * Utility method to convert commons properties of {@link KapuaUpdatableEntity} object to the GWT matching {@link GwtUpdatableEntityModel} object
-     *
+     * 
      * @param kapuaEntity The {@link KapuaUpdatableEntity} from which to copy values
      * @param gwtEntity   The {@link GwtUpdatableEntityModel} into which copy values
      * @since 1.0.0
@@ -551,7 +541,7 @@ public class KapuaGwtModelConverter {
 
     /**
      * Utility method to convert commons properties of {@link KapuaEntity} object to the GWT matching {@link GwtEntityModel} object
-     *
+     * 
      * @param kapuaEntity The {@link KapuaEntity} from which to copy values
      * @param gwtEntity   The {@link GwtEntityModel} into which copy values
      * @since 1.0.0
