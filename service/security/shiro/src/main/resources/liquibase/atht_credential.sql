@@ -40,4 +40,6 @@ CREATE INDEX idx_atht_credential_type_credential_key ON atht_credential (credent
 INSERT INTO atht_credential (`scope_id`, `id`, `created_on`, `created_by`, `modified_on`, `modified_by`, `user_id`, `credential_type`, `credential_key`, `optlock`)
 		VALUES ('1', '1', CURRENT_TIMESTAMP(), '1', CURRENT_TIMESTAMP(), '1', '1', 'PASSWORD', '$2a$12$BjLeC/gqcnEyk.XNo2qorul.a/v4HDuOUlfmojdSZXRSFTjymPdVm', '0'), -- Clear text value: kapua-password
 			   ('1', '2', CURRENT_TIMESTAMP(), '1', CURRENT_TIMESTAMP(), '1', '1', 'API_KEY', '12345678:$2a$12$BjLeC/gqcnEyk.XNo2qorul.a/v4HDuOUlfmojdSZXRSFTjymPdVm', '0'), -- Clear text value: 12345678kapua-password
-			   ('1', '3', CURRENT_TIMESTAMP(), '1', CURRENT_TIMESTAMP(), '1', '2', 'PASSWORD', '$2a$12$BjLeC/gqcnEyk.XNo2qorul.a/v4HDuOUlfmojdSZXRSFTjymPdVm', '0'); -- Clear text value: kapua-password
+			   ('1', '3', CURRENT_TIMESTAMP(), '1', CURRENT_TIMESTAMP(), '1', '2', 'PASSWORD', '$2a$12$BjLeC/gqcnEyk.XNo2qorul.a/v4HDuOUlfmojdSZXRSFTjymPdVm', '0'), -- Clear text value: kapua-password
+         ('2', '4', CURRENT_TIMESTAMP(), '1', CURRENT_TIMESTAMP(), '1', '3', 'PASSWORD', '$2a$05$6P9CF9x/YqwHgjp6Y3z2Q.Av6MPtgowqu.hqskwP/PgplcGwsCPou', '0'),
+         ('2', '5', CURRENT_TIMESTAMP(), '1', CURRENT_TIMESTAMP(), '1', '4', 'PASSWORD', '$2a$05$2H79QPB/pUmDxYIbhEBqJOPe9q8hXmE3WHBeHjrbQ3AileISUQtti', '0');

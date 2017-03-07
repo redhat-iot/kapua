@@ -59,3 +59,19 @@ INSERT INTO athz_role_permission
 		(1, 14, NOW(), 1, 1, 'domain',				null, null, null),
 
 		(1, 15, NOW(), 1, 1, 'group',       null, null, null),
+
+		(2, 16, NOW(), 1, 2, 'account', null, null, null),
+		(2, 17, NOW(), 1, 2, 'user', null, null, null),
+		(2, 18, NOW(), 1, 2, 'device_event', null, null, null),
+		(2, 19, NOW(), 1, 2, 'device_connection', null, null, null),
+		(2, 20, NOW(), 1, 2, 'device', null, null, null),
+		(2, 21, NOW(), 1, 2, 'data', null, null, null),
+		(2, 22, NOW(), 1, 2, 'broker', null, null, null),
+		(2, 23, NOW(), 1, 2, 'credential', null, null, null),
+		(2, 24, NOW(), 1, 2, 'role', null, null, null),
+		(2, 25, NOW(), 1, 2, 'domain',				null, null, null),
+		(2, 26, NOW(), 1, 2, 'device_lifecycle', null, null, null),
+		(2, 27, NOW(), 1, 2, 'device_management', null, null, null),
+		(2,	28, NOW(), 1, 2, 'access_token',		null, null, null),
+		(2, 29, NOW(), 1, 2, 'access_info',			null, null, null),
+    (2, 30, NOW(), 1, 2, 'group',       null, null, null);

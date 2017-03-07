@@ -33,4 +33,6 @@ CREATE UNIQUE INDEX idx_scopeId_accessId_roleId ON athz_access_role (scope_id, a
 
 INSERT INTO athz_access_role
 	VALUES
-		(1, 1, NOW(), 1, 1, 1); -- kapua-sys assigned of role admin
+		(1, 1, NOW(), 1, 1, 1), -- kapua-sys assigned of role admin
+		(2, 2, NOW(), 1, 3, 2),
+		(2, 3, NOW(), 1, 4, 2);

@@ -37,4 +37,6 @@ CREATE INDEX idx_scopeId_userId ON athz_access_info (scope_id, user_id);
 INSERT INTO athz_access_info
 	VALUES
 		(1, 1, NOW(), 1, NOW(), 1, 1, 0, '', ''),
-		(1, 2, NOW(), 1, NOW(), 1, 2, 0, '', '');
+		(1, 2, NOW(), 1, NOW(), 1, 2, 0, '', ''),
+    (2, 3, NOW(), 1, NOW(), 1, 3, 0, '', ''),
+    (2, 4, NOW(), 1, NOW(), 1, 4, 0, '', '');

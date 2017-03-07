@@ -36,4 +36,5 @@ CREATE UNIQUE INDEX idx_role_name ON athz_role (scope_id, name);
 
 INSERT INTO athz_role
 	VALUES
-		(1, 1, NOW(), 1, NOW(), 1, 'admin', 0, '','');
+		(1, 1, NOW(), 1, NOW(), 1, 'admin', 0, '',''),
+    (2, 2, NOW(), 1, NOW(), 1, 'gateway', 0, '','');
