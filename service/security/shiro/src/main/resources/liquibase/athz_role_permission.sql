@@ -65,7 +65,7 @@ INSERT INTO athz_role_permission
 		(2, 18, NOW(), 1, 2, 'device_event', null, null, null),
 		(2, 19, NOW(), 1, 2, 'device_connection', null, null, null),
 		(2, 20, NOW(), 1, 2, 'device', null, null, null),
-		(2, 21, NOW(), 1, 2, 'data', null, null, null),
+		(2, 21, NOW(), 1, 2, 'datastore', null, null, null),
 		(2, 22, NOW(), 1, 2, 'broker', null, null, null),
 		(2, 23, NOW(), 1, 2, 'credential', null, null, null),
 		(2, 24, NOW(), 1, 2, 'role', null, null, null),
