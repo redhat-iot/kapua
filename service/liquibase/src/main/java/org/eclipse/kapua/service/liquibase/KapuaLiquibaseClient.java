@@ -67,13 +67,11 @@ public class KapuaLiquibaseClient {
                     changelogFile.mkdir();
                     changelogFile = new File(changelogFile, script.replaceFirst("liquibase/", ""));
                     IOUtils.write(IOUtils.toString(scriptUrl), new FileOutputStream(changelogFile));
-/*
                     Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(connection));
                     if(schema.isPresent()) {
                         database.setDefaultSchemaName(schema.get());
                     }
-*/
-                    Liquibase liquibase = new Liquibase(changelogFile.getAbsolutePath(), new FileSystemResourceAccessor(), new JdbcConnection(connection));
+                    Liquibase liquibase = new Liquibase(changelogFile.getAbsolutePath(), new FileSystemResourceAccessor(), database);
                     liquibase.update(null);
                 }
             }
