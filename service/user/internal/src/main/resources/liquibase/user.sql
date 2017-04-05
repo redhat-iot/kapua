@@ -44,4 +44,5 @@ INSERT INTO `usr_user` (`scope_id`, `id`, `name`, `created_on`, `created_by`, `m
 		VALUES (1, 1, 'kapua-sys',    CURRENT_TIMESTAMP(), 1, CURRENT_TIMESTAMP(), 1, 'ENABLED', 'Kapua Sysadmin', 'kapua-sys@eclipse.org',    '+1 555 123 4567', 'INTERNAL', NULL, 0, NULL, NULL),
 		       (1, 2, 'kapua-broker', CURRENT_TIMESTAMP(), 1, CURRENT_TIMESTAMP(), 1, 'ENABLED', 'Kapua Broker',   'kapua-broker@eclipse.org', '+1 555 123 4567', 'INTERNAL', NULL, 0, NULL, NULL),
            (2, 3, 'demo-gw', CURRENT_TIMESTAMP(), 1, CURRENT_TIMESTAMP(), 1, 'ENABLED', 'Red Hat IoT Demo Gateway',   'iotdemo@redhat.com', '+1 555 123 4567', 'INTERNAL', NULL, 0, NULL, NULL),
-           (2, 4, 'demo-gw2', CURRENT_TIMESTAMP(), 1, CURRENT_TIMESTAMP(), 1, 'ENABLED', 'Red Hat IoT Demo Gateway',   'iotdemo@redhat.com', '+1 555 123 4567', 'INTERNAL', NULL, 0, NULL, NULL);
+           (2, 4, 'demo-gw2', CURRENT_TIMESTAMP(), 1, CURRENT_TIMESTAMP(), 1, 'ENABLED', 'Red Hat IoT Demo Gateway',   'iotdemo@redhat.com', '+1 555 123 4567', 'INTERNAL', NULL, 0, NULL, NULL),
+           (2, 5, 'demo', CURRENT_TIMESTAMP(), 1, CURRENT_TIMESTAMP(), 1, 'ENABLED', 'Red Hat IoT Demo User',   'iotdemo@redhat.com', '+1 555 123 4567', 'INTERNAL', NULL, 0, NULL, NULL);

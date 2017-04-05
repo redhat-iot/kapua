@@ -35,4 +35,5 @@ INSERT INTO athz_access_role
 	VALUES
 		(1, 1, NOW(), 1, 1, 1), -- kapua-sys assigned of role admin
 		(2, 2, NOW(), 1, 3, 2),
-		(2, 3, NOW(), 1, 4, 2);
+		(2, 3, NOW(), 1, 4, 2),
+		(2, 4, NOW(), 1, 5, 3);
