@@ -72,7 +72,7 @@ public class MqttAsyncTransport extends AbstractMqttTransport implements AutoClo
     @Override
     public void connect() {
         try {
-            client.connect(connectOptions, null, new IMqttActionListener() {
+            IMqttToken token = client.connect(connectOptions, null, new IMqttActionListener() {
 
                 @Override
                 public void onSuccess(final IMqttToken asyncActionToken) {
@@ -84,6 +84,7 @@ public class MqttAsyncTransport extends AbstractMqttTransport implements AutoClo
                     logger.warn("Failed to connect", exception);
                 }
             });
+            token.waitForCompletion();
         } catch (final MqttException e) {
             logger.warn("Failed to initiate connect", e);
         }
@@ -112,7 +113,7 @@ public class MqttAsyncTransport extends AbstractMqttTransport implements AutoClo
     @Override
     public void close() throws MqttException {
         try {
-            client.disconnect(0).waitForCompletion();
+            client.disconnect(5000).waitForCompletion();
         } finally {
             client.close();
         }
@@ -186,7 +187,7 @@ public class MqttAsyncTransport extends AbstractMqttTransport implements AutoClo
 
             client.publish(fullTopic, payload, 0, false);
         } catch (final Exception e) {
-            logger.warn("Failed to send out message", e);
+//            logger.warn("Failed to send out message", e);
         }
     }
 

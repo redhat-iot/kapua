@@ -200,7 +200,7 @@ public class SimulatorRunner {
 
         // auto close all simulations
         close.addAll(simulations);
-
+        connectloop:
         try {
             for (int i = 1; i <= count; i++) {
 
@@ -221,6 +221,11 @@ public class SimulatorRunner {
                 close.add(transport);
                 final Simulator simulator = new Simulator(configuration, transport, apps);
                 close.add(simulator);
+
+                if (!simulator.isConnected()) {
+                    break connectloop;
+                }
+
             }
 
             Thread.sleep(SECONDS.toMillis(shutdownAfter));

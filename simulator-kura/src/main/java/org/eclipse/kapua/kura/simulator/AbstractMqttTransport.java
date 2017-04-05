@@ -37,6 +37,7 @@ public abstract class AbstractMqttTransport implements Transport {
 
             final MqttConnectOptions result = new MqttConnectOptions();
             result.setAutomaticReconnect(true);
+            result.setConnectionTimeout(5);
 
             final String ui = u.getUserInfo();
             if (ui != null && !ui.isEmpty()) {

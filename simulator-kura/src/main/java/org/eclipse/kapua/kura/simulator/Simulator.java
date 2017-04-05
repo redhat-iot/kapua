@@ -29,6 +29,8 @@ public class Simulator implements AutoCloseable {
 
     protected final Transport transport;
 
+    private boolean isConnected = false;
+
     protected List<Module> modules = new LinkedList<>();
 
     public Simulator(final GatewayConfiguration configuration, final Transport transport,
@@ -61,6 +63,7 @@ public class Simulator implements AutoCloseable {
     }
 
     protected void connected() {
+        isConnected = true;
         logger.info("Connected ... sending birth certificate ...");
         for (final Module module : modules) {
             try {
@@ -72,6 +75,8 @@ public class Simulator implements AutoCloseable {
     }
 
     protected void disconnected() {
+        isConnected = false;
+        logger.info("Disconnected... Should retry connection...");
         for (final Module module : modules) {
             try {
                 module.disconnected(transport);
@@ -81,4 +86,7 @@ public class Simulator implements AutoCloseable {
         }
     }
 
+    public boolean isConnected() {
+        return isConnected;
+    }
 }
